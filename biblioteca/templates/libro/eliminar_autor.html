@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+
+ {%block content%}
+    <form  method="POST">
+        {% csrf_token %}
+            <!-- hacemos una validacion de pregunta sencilla 
+            con el modelo enviado desde las views si damos eliminar
+            esta informacion se ira a la vista gracias al metodo 
+            post para garantizar la eliminacion  -->
+            <h2>Desea eliminar el rejisro {{autor.nombre}}</h2>
+            <button type="submit">Eliminar</button>
+
+            <!-- cuando se presione cancelar creamos un redireccionamiento
+            a mi listado de autores para que me los muestre pero no envia
+           nada a la vista por tal motivo no se realiza la eliminacion
+             esta sintaxis es obligatoria si no no redireccionara   -->
+            <a href="{% url 'libro:autores' %}">Cancelar</a>
+  {%endblock content%}
+    
+</body>
+</html>

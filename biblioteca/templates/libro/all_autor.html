@@ -1,0 +1,59 @@
+{%extends 'libro/crear_autor.html'%}
+<h1>Bienvenidos a listar usuarios </h1>
+
+
+{% block content%}
+<!-- cual es la mejor forma de recibir 
+     modelos desde las vistas
+        la mejor manera es siempre con un condicional
+        hacer validaciones de si nos llego un modelos
+        si no returnar un mensaje para estar informados 
+        de cada accion que hacemos y controlar el codigo -->
+        
+    {%if autor %} 
+
+
+            <table>
+                <thead>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nacionalidad</th>
+                    <th>Descriptcion</th>
+                    <th>Opciones</th>
+
+                </thead>
+                <body>
+                    {% for element in autor %}
+                        <tr>
+                            <td>{{element.id}}</td>
+                            <td>{{element.nombre}}</td> 
+                            <td>{{element.apellido}}</td> 
+                            <td>{{element.nacionalidad}}</td> 
+                            <td>{{element.descripcion}}</td> 
+
+                        <!--  Ruta funcion eliminar incluida 
+                        Definimos una ruta con </a> para que me lleve 
+                        a la ruta editar que esta en url el endpoind 
+                        debo poner el app donde esta: luego el endpoind
+                        y el id si no sacara error por que necesita saber
+                        cual sera el objeto a modificar que recibe la funcion
+                        editar  -->
+                        
+                            <td><a href="{% url 'libro:editar' element.id %}">Editar</a></td>
+                            <!-- <td><a href="{% url 'libro:editar' element.id %}">Editar</a></td> -->
+
+                            <td><a href="{% url 'libro:eliminar' element.id %}">Eliminar</a></td>
+  
+                        </tr>
+                    {% endfor %}
+
+                    <td><a href="{% url 'libro:crear_autor'%}">Crear</a></td><br>
+                    
+                </body>
+            </table>
+    {%else%}
+        <h1>No existen autores rejistrados</h1>
+    {%endif%}
+    
+{%endblock content%}

@@ -1,0 +1,32 @@
+{%if book %} 
+
+
+<table>
+    <thead>s
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Nacionalidad</th>
+        <th>Descriptcion</th>
+        <th>Opciones</th>
+
+    </thead>
+
+    <body>
+        {% for element in book %}
+            <tr>
+                <td>{{element.id}}</td>
+                <td>{{element.nombre}}</td> 
+                <td>{{element.apellido}}</td> 
+                <td>{{element.nacionalidad}}</td> 
+                <td>{{element.descripcion}}</td> 
+
+            </tr>
+        {% endfor %}
+
+        
+    </body>
+</table>
+{%else%}
+<h1>No existen autores rejistrados</h1>
+{%endif%}

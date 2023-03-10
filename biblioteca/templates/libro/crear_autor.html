@@ -1,0 +1,37 @@
+
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+
+ {%block content%}
+
+    <!-- se utiliza para crear un formulario 
+    en Django y enviar los datos del
+    formulario al servidor utilizando 
+    el método POST. -->
+    
+    <form  method="POST">
+
+        <!-- Es una medida importante de seguridad que
+         se debe utilizar en todos los formularios
+          que procesan datos sensibles en Django. -->
+        {% csrf_token %}
+        {%if error %}
+            <h2>{{error}}</h2>
+        {%else%}
+            <table>
+            {{ form.as_table }}
+            </table>
+
+             <!-- En particular, este botón se utiliza para
+             enviar los datos del formulario al servidor
+             cuando el usuario hace clic en él. -->
+            <button type="submit">Crear </button>
+        {% endif%}
+    </form>
+  {%endblock content%}
+    
+</body>
+</html>
