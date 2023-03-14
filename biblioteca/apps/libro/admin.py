@@ -44,7 +44,18 @@ class categoriaAdmin(ImportExportActionModelAdmin,admin.ModelAdmin):
     resource_class = CategoriaResources
 
 
-
 admin.site.register(Autor,categoriaAdmin)
 
-admin.site.register(libro)
+class CategoriaResourcesLibro(resources.ModelResource):
+    class Meta:
+        model= libro
+
+"""para poder pasarle la funcion de import y export debemos heredarle
+   la clase que importamos y que heredamos previamente si no no work"""
+class categoriaAdminLibro(ImportExportActionModelAdmin,admin.ModelAdmin):
+    search_fields=['nombre']
+    list_display=('titulo','fecha_publicacion','fecha_creacion')
+    resource_class = CategoriaResourcesLibro
+
+
+admin.site.register(libro,categoriaAdminLibro)
